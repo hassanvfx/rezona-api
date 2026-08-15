@@ -1,0 +1,254 @@
+{
+  "schema_version": 1,
+  "study_id": "rezona-keyword-space-pilot-v1",
+  "generated_at": "2026-08-15T08:07:55Z",
+  "method": "Deterministic adaptive discovery sample drawn from long-tail unigram and bigram vocabulary in the existing enriched game-title corpus. It is not a probability sample of all Rezona games.",
+  "seed": "rezona-keyword-space-pilot-v1",
+  "query_count": 60,
+  "candidate_counts": {
+    "unigram": 1384,
+    "bigram": 801
+  },
+  "queries": [
+    {
+      "query": "animals farming",
+      "stratum": "bigram"
+    },
+    {
+      "query": "best fps",
+      "stratum": "bigram"
+    },
+    {
+      "query": "best racing",
+      "stratum": "bigram"
+    },
+    {
+      "query": "block runner",
+      "stratum": "bigram"
+    },
+    {
+      "query": "clash royale",
+      "stratum": "bigram"
+    },
+    {
+      "query": "clicker incremental",
+      "stratum": "bigram"
+    },
+    {
+      "query": "coloring yatta",
+      "stratum": "bigram"
+    },
+    {
+      "query": "crew quiz",
+      "stratum": "bigram"
+    },
+    {
+      "query": "dandy world",
+      "stratum": "bigram"
+    },
+    {
+      "query": "doge tycoon",
+      "stratum": "bigram"
+    },
+    {
+      "query": "fashion walkway",
+      "stratum": "bigram"
+    },
+    {
+      "query": "gacha heroes",
+      "stratum": "bigram"
+    },
+    {
+      "query": "light green",
+      "stratum": "bigram"
+    },
+    {
+      "query": "maze angry",
+      "stratum": "bigram"
+    },
+    {
+      "query": "meme run",
+      "stratum": "bigram"
+    },
+    {
+      "query": "meow match",
+      "stratum": "bigram"
+    },
+    {
+      "query": "merge factory",
+      "stratum": "bigram"
+    },
+    {
+      "query": "meteor rush",
+      "stratum": "bigram"
+    },
+    {
+      "query": "monster hunter",
+      "stratum": "bigram"
+    },
+    {
+      "query": "neon gacha",
+      "stratum": "bigram"
+    },
+    {
+      "query": "neon runner",
+      "stratum": "bigram"
+    },
+    {
+      "query": "phone super",
+      "stratum": "bigram"
+    },
+    {
+      "query": "pocket side",
+      "stratum": "bigram"
+    },
+    {
+      "query": "pyramid solitaire",
+      "stratum": "bigram"
+    },
+    {
+      "query": "sandbox roleplay",
+      "stratum": "bigram"
+    },
+    {
+      "query": "skateboard rush",
+      "stratum": "bigram"
+    },
+    {
+      "query": "sudoku ips",
+      "stratum": "bigram"
+    },
+    {
+      "query": "super update",
+      "stratum": "bigram"
+    },
+    {
+      "query": "tap tap",
+      "stratum": "bigram"
+    },
+    {
+      "query": "world roleplay",
+      "stratum": "bigram"
+    },
+    {
+      "query": "abyss",
+      "stratum": "unigram"
+    },
+    {
+      "query": "baddie",
+      "stratum": "unigram"
+    },
+    {
+      "query": "blocks",
+      "stratum": "unigram"
+    },
+    {
+      "query": "capitalist",
+      "stratum": "unigram"
+    },
+    {
+      "query": "clown",
+      "stratum": "unigram"
+    },
+    {
+      "query": "con",
+      "stratum": "unigram"
+    },
+    {
+      "query": "daylight",
+      "stratum": "unigram"
+    },
+    {
+      "query": "deadly",
+      "stratum": "unigram"
+    },
+    {
+      "query": "deltarune",
+      "stratum": "unigram"
+    },
+    {
+      "query": "doggo",
+      "stratum": "unigram"
+    },
+    {
+      "query": "fate",
+      "stratum": "unigram"
+    },
+    {
+      "query": "friends",
+      "stratum": "unigram"
+    },
+    {
+      "query": "gambling",
+      "stratum": "unigram"
+    },
+    {
+      "query": "godly",
+      "stratum": "unigram"
+    },
+    {
+      "query": "hellgat",
+      "stratum": "unigram"
+    },
+    {
+      "query": "justice",
+      "stratum": "unigram"
+    },
+    {
+      "query": "legendary",
+      "stratum": "unigram"
+    },
+    {
+      "query": "max",
+      "stratum": "unigram"
+    },
+    {
+      "query": "parrot",
+      "stratum": "unigram"
+    },
+    {
+      "query": "pass",
+      "stratum": "unigram"
+    },
+    {
+      "query": "pen",
+      "stratum": "unigram"
+    },
+    {
+      "query": "sakura",
+      "stratum": "unigram"
+    },
+    {
+      "query": "send",
+      "stratum": "unigram"
+    },
+    {
+      "query": "shapes",
+      "stratum": "unigram"
+    },
+    {
+      "query": "sizzle",
+      "stratum": "unigram"
+    },
+    {
+      "query": "street",
+      "stratum": "unigram"
+    },
+    {
+      "query": "summer",
+      "stratum": "unigram"
+    },
+    {
+      "query": "system",
+      "stratum": "unigram"
+    },
+    {
+      "query": "toxic",
+      "stratum": "unigram"
+    },
+    {
+      "query": "walk",
+      "stratum": "unigram"
+    }
+  ]
+}

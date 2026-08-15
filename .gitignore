@@ -1,0 +1,13 @@
+.rezona.local.env
+__pycache__/
+*.pyc
+
+# Generated raw collection archive; retain locally or publish deliberately.
+data/rezona/search/
+data/rezona/game-details/
+data/rezona/index.json
+data/rezona/keyword-space/
+data/rezona/keyword-space-index.json
+
+# The derived, privacy-reviewed corpus is the deliberate public dataset.
+!data/rezona/games.enriched.json

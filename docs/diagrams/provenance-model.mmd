@@ -1,0 +1,10 @@
+flowchart LR
+    M[Mechanic assignment] --> P[Saved-search hit\nquery · page · item position]
+    P --> I[(game_id, game_version)]
+    I --> D[detail.data\nverbatim API object]
+    M --> T[tags.mechanics]
+    P --> Q[tags.queries]
+    D --> R[One enriched game record]
+    T --> R
+    Q --> R
+    P --> R

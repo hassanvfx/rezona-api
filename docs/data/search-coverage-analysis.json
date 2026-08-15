@@ -1,0 +1,198 @@
+{
+  "schema_version": 3,
+  "source": {
+    "index_path": "data/rezona/index.json",
+    "keyword_space_index_path": "data/rezona/keyword-space-index.json",
+    "collection_mode": "full",
+    "index_retrieved_at": "2026-08-15T06:08:49Z",
+    "raw_archive_required": true
+  },
+  "method": {
+    "grouping": "Merge all saved result pages by exact literal query term before global deduplication.",
+    "identity": "game.game_id",
+    "result_ceiling": 200,
+    "cost_basis": "Per completed indexed game; excludes failed attempts, retries, hosting, moderation, and other platform costs."
+  },
+  "search_coverage": {
+    "query_probes": 360,
+    "search_pages": 720,
+    "distinct_query_terms": 350,
+    "observed_unique_game_ids": 40026,
+    "term_memberships": 65541,
+    "redundancy_factor": 1.637461,
+    "single_term_games": 31947,
+    "single_term_share": 0.798156,
+    "two_term_games": 4363,
+    "capped_terms": 318,
+    "pairwise_term_pairs": 61075,
+    "pairwise_mean_intersection": 5.268702,
+    "pairwise_median_intersection": 0,
+    "pairwise_mean_jaccard": 0.023087,
+    "pairwise_median_jaccard": 0.0,
+    "pairwise_mean_overlap_smaller": 0.026583,
+    "pairwise_median_overlap_smaller": 0.0
+  },
+  "baseline_search_coverage": {
+    "query_probes": 300,
+    "search_pages": 600,
+    "distinct_query_terms": 290,
+    "observed_unique_game_ids": 32238,
+    "term_memberships": 54200,
+    "redundancy_factor": 1.681246,
+    "single_term_games": 25831,
+    "single_term_share": 0.801259,
+    "two_term_games": 3602,
+    "capped_terms": 264,
+    "pairwise_term_pairs": 41905,
+    "pairwise_mean_intersection": 7.486028,
+    "pairwise_median_intersection": 0,
+    "pairwise_mean_jaccard": 0.033047,
+    "pairwise_median_jaccard": 0.0,
+    "pairwise_mean_overlap_smaller": 0.037733,
+    "pairwise_median_overlap_smaller": 0.0
+  },
+  "keyword_space": {
+    "terms": 60,
+    "search_pages": 120,
+    "items_returned": 11341,
+    "capped_pages": 108,
+    "raw_union": 40026,
+    "incremental_ids_beyond_baseline": 7788,
+    "new_ids_beyond_curated_corpus": 9102,
+    "detail_records": 2000
+  },
+  "overlap_sensitivity": {
+    "method": "Incidence/Chao2 overlap-only sensitivity: S_obs + f1^2 / (2 × f2).",
+    "observed_unique_game_ids": 40026,
+    "single_term_ids_f1": 31947,
+    "two_term_ids_f2": 4363,
+    "illustrative_value": 156988,
+    "status": "Exploratory adaptive-search overlap estimate of searchable-result diversity; not an inventory estimate, Rezona's verified inventory, actual data lake, platform census, or confidence interval.",
+    "limitations": [
+      "Query terms were curated rather than sampled from a representative vocabulary.",
+      "318 of 350 terms reached the 200-result ceiling, leaving unknown tails.",
+      "Term detection is dependent because related queries and opaque ranking are correlated."
+    ]
+  },
+  "assumption_stress_test": [
+    {
+      "model_frame": "Original mechanics frame",
+      "terms": 290,
+      "observed_ids": 32238,
+      "chao2_style_output": 124859,
+      "meaning": "Earlier adaptive curated frame"
+    },
+    {
+      "model_frame": "Combined frame",
+      "terms": 350,
+      "observed_ids": 40026,
+      "chao2_style_output": 156988,
+      "meaning": "Primary exploratory model output"
+    },
+    {
+      "model_frame": "Uncapped-only subset",
+      "terms": 32,
+      "observed_ids": 2555,
+      "chao2_style_output": 31741,
+      "meaning": "Restricted subset; demonstrates frame sensitivity"
+    }
+  ],
+  "token_cost_benchmarks": {
+    "snapshot_date": "2026-08-15",
+    "formula": "input tokens × input rate + output/reasoning tokens × output rate",
+    "status": "Public reference benchmarks only; not evidence of Rezona's provider, model, usage, or cost.",
+    "models": [
+      {
+        "id": "gpt_5_6_terra",
+        "label": "GPT-5.6 Terra",
+        "source_url": "https://developers.openai.com/api/docs/models/gpt-5.6-terra",
+        "input_usd_per_million_tokens": 2.5,
+        "output_usd_per_million_tokens": 15.0,
+        "aggregate_multi_request_examples": [
+          {
+            "input_tokens": 10000,
+            "output_or_reasoning_tokens": 65000,
+            "cost_usd": 1.0
+          },
+          {
+            "input_tokens": 100000,
+            "output_or_reasoning_tokens": 650000,
+            "cost_usd": 10.0
+          }
+        ]
+      },
+      {
+        "id": "gpt_5_6_sol",
+        "label": "GPT-5.6 Sol",
+        "source_url": "https://developers.openai.com/api/docs/models/gpt-5.6-sol",
+        "input_usd_per_million_tokens": 5.0,
+        "output_usd_per_million_tokens": 30.0,
+        "aggregate_multi_request_examples": [
+          {
+            "input_tokens": 10000,
+            "output_or_reasoning_tokens": 31667,
+            "cost_usd": 1.00001
+          },
+          {
+            "input_tokens": 100000,
+            "output_or_reasoning_tokens": 316667,
+            "cost_usd": 10.00001
+          }
+        ]
+      }
+    ]
+  },
+  "cost_scenarios": [
+    {
+      "id": "original_curated_corpus",
+      "label": "Original curated corpus",
+      "game_count": 8528,
+      "status": "Observed selected corpus; not a platform total.",
+      "cost_usd_per_completed_indexed_game": {
+        "1": 8528,
+        "10": 85280
+      }
+    },
+    {
+      "id": "expanded_enriched_corpus",
+      "label": "Expanded enriched corpus",
+      "game_count": 10528,
+      "status": "Observed selected corpus; not a platform total.",
+      "cost_usd_per_completed_indexed_game": {
+        "1": 10528,
+        "10": 105280
+      }
+    },
+    {
+      "id": "raw_search_lower_bound",
+      "label": "Combined observed raw-search lower bound",
+      "game_count": 40026,
+      "status": "Observed unique IDs in saved query windows; not a platform census.",
+      "cost_usd_per_completed_indexed_game": {
+        "1": 40026,
+        "10": 400260
+      }
+    },
+    {
+      "id": "exploratory_overlap_model",
+      "label": "Exploratory adaptive-search overlap estimate",
+      "game_count": 156988,
+      "status": "Assumption-dependent model output; not an inventory estimate.",
+      "cost_usd_per_completed_indexed_game": {
+        "1": 156988,
+        "10": 1569880
+      }
+    },
+    {
+      "id": "historical_120m_comparison",
+      "label": "Historical 120M comparison",
+      "game_count": 120000000,
+      "status": "Unverified historical claim comparison; not a project finding.",
+      "cost_usd_per_completed_indexed_game": {
+        "1": 120000000,
+        "10": 1200000000
+      }
+    }
+  ],
+  "conclusion": "40,026 observed IDs is a reproducible lower bound from saved windows. 156,988 is an exploratory adaptive-search overlap estimate of searchable-result diversity, not a defensible extrapolation to Rezona inventory because capped, title-derived, and dependent query windows violate its inference assumptions."
+}

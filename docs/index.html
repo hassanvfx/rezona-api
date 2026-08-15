@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="A provenance-preserving archive of Rezona game metadata.">
+    <title>Rezona API Archive</title>
+    <style>
+      :root { --ink:#f7f7f4; --muted:#c9c9c3; --panel:#111; --edge:#3e3e3e; --pink:#ff4fa3; --blue:#00c8ff; }
+      * { box-sizing: border-box; } body { margin:0; color:var(--ink); background:#000; font:16px/1.6 Inter, ui-sans-serif, system-ui, sans-serif; }
+      a { color:#c4d7ff; } .hero { min-height:590px; padding:72px max(28px, calc((100vw - 1120px)/2)); background:radial-gradient(circle at 78% 38%,rgba(118,8,38,.38),transparent 42%),linear-gradient(112deg,#050509,#09030a 55%,#14040a); display:flex; align-items:center; }
+      .hero-copy { max-width:650px; padding-top:330px; } .eyebrow { color:#f47cda; letter-spacing:.14em; text-transform:uppercase; font-size:.78rem; font-weight:800; } h1 { font-size:clamp(2.8rem,7vw,5.6rem); line-height:.98; margin:.3rem 0 1.2rem; letter-spacing:-.055em; } h2 { font-size:clamp(1.8rem,4vw,2.8rem); letter-spacing:-.04em; margin:0 0 .6rem; } .sr-only { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
+      .lede { font-size:1.16rem; color:#e2e2dd; max-width:57ch; text-shadow:0 2px 12px #000; } .actions { display:flex; flex-wrap:wrap; gap:12px; margin-top:22px; } .button { border:1px solid var(--edge); border-radius:999px; padding:10px 17px; color:var(--ink); text-decoration:none; font-weight:700; background:rgba(18,18,18,.82); } .button.primary { background:linear-gradient(90deg,#ff7a00,#ff3d9b); border:0; } .hero-kicker { color:#ffbe80; margin:0 0 10px; font-size:.82rem; font-weight:800; letter-spacing:.12em; text-transform:uppercase; } .hero-statement { max-width:48ch; margin:0; font-size:clamp(1.15rem,1.9vw,1.45rem); line-height:1.32; font-weight:720; text-shadow:0 2px 14px #000; } .claim-panel { max-width:660px; margin-top:12px; padding:15px 18px; border:1px solid rgba(255,163,67,.55); border-radius:14px; background:rgba(10,7,12,.78); box-shadow:0 10px 40px rgba(0,0,0,.3); } .claim-numbers { display:flex; gap:18px; flex-wrap:wrap; margin-top:8px; font-size:clamp(1.45rem,3vw,2.25rem); font-weight:900; color:#ffb05c; line-height:1; } .claim-panel small { display:block; margin-top:9px; color:#ddd; }
+      .topnav { position:sticky; top:0; z-index:4; display:flex; gap:18px; overflow:auto; padding:13px max(28px,calc((100vw - 1120px)/2)); background:rgba(0,0,0,.86); border-bottom:1px solid var(--edge); backdrop-filter:blur(12px); } .topnav a { color:var(--muted); font-size:.84rem; font-weight:750; text-decoration:none; white-space:nowrap; } .topnav a:hover { color:var(--ink); }
+      main { max-width:1120px; margin:auto; padding:72px 28px; } section { margin:0 0 86px; scroll-margin-top:70px; } .grid { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-top:26px; } .split { display:grid; grid-template-columns:1.05fr .95fr; gap:32px; align-items:start; } .card { border:1px solid var(--edge); border-radius:16px; padding:22px; background:linear-gradient(145deg,rgba(30,30,30,.9),rgba(10,10,10,.96)); } .metric { color:#ff8a19; font-weight:850; font-size:2.2rem; line-height:1; } .card p { margin:.55rem 0 0; color:var(--muted); } .evidence-ladder { display:grid; grid-template-columns:repeat(4,1fr); gap:14px; margin-top:26px; } .evidence-card { position:relative; min-height:340px; overflow:hidden; isolation:isolate; border:1px solid var(--edge); border-radius:18px; background:#090910 center/cover; display:flex; align-items:flex-end; } .evidence-card::before { content:""; position:absolute; inset:0; z-index:-1; background:linear-gradient(180deg,rgba(0,0,0,.06) 20%,rgba(0,0,0,.9) 100%); } .evidence-copy { width:100%; padding:22px; background:linear-gradient(180deg,transparent,rgba(0,0,0,.82)); } .evidence-card .step-no { color:#ffbf80; } .evidence-card h3 { margin:.45rem 0; font-size:1.5rem; line-height:1.03; letter-spacing:-.035em; } .evidence-card p { margin:0; color:#e4e4df; font-size:.91rem; line-height:1.42; } .claim-card { background-image:url("assets/evidence-card-claim-v1.png"); } .cost-card { background-image:url("assets/evidence-card-cost-v1.png"); } .observed-card { background-image:url("assets/evidence-card-observed-v1.png"); } .limit-card { background-image:url("assets/evidence-card-limit-v1.png"); } .note { border-left:3px solid var(--pink); padding:16px 18px; background:#161616; color:#eeeeea; border-radius:0 12px 12px 0; } .warning { border-left-color:#ff4b4b; background:linear-gradient(90deg,rgba(255,54,54,.16),#161616); } .diagram { overflow:auto; padding:16px; border:1px solid var(--edge); border-radius:16px; background:#0f0f0f; margin-top:22px; } .notice { width:100%; max-width:660px; display:block; border:1px solid var(--edge); border-radius:12px; } .statement { font-size:1.28rem; line-height:1.55; color:#f1f1ed; } .question-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:12px; margin-top:22px; } .question { padding:18px; border:1px solid var(--edge); border-radius:12px; background:#101010; } .question strong { color:#ffae52; display:block; margin-bottom:5px; } .question span { color:var(--muted); } .api-list { display:grid; gap:10px; margin-top:20px; } .api-list div { padding:13px 15px; border-left:2px solid var(--blue); background:#101010; } .scenario-table { width:100%; border-collapse:collapse; margin-top:22px; font-size:.94rem; } .scenario-table th, .scenario-table td { text-align:left; padding:13px; border-bottom:1px solid var(--edge); } .scenario-table th { color:#ffae52; } .scenario-table td:nth-child(n+2), .scenario-table th:nth-child(n+2) { text-align:right; } code { color:#b8edff; font: .9em ui-monospace, SFMono-Regular, Menlo, monospace; } .steps { margin:18px 0 0; padding-left:22px; color:var(--muted); } .steps li { margin:0 0 10px; } .codeblock { display:block; margin-top:14px; padding:14px; border:1px solid var(--edge); border-radius:10px; background:#090909; white-space:pre-wrap; } .story { display:grid; grid-template-columns:repeat(4,1fr); gap:0; margin-top:30px; border:1px solid var(--edge); border-radius:18px; overflow:hidden; background:#090909; } .story-step { padding:26px 22px 28px; min-height:230px; border-right:1px solid var(--edge); background:linear-gradient(145deg,rgba(255,79,163,.11),transparent 58%); } .story-step:nth-child(2) { background:linear-gradient(145deg,rgba(255,156,55,.13),transparent 58%); } .story-step:nth-child(3) { background:linear-gradient(145deg,rgba(0,200,255,.13),transparent 58%); } .story-step:last-child { border-right:0; background:linear-gradient(145deg,rgba(255,70,70,.16),transparent 58%); } .step-no { color:var(--pink); font-weight:850; letter-spacing:.12em; font-size:.78rem; } .story-step h3 { font-size:1.28rem; line-height:1.1; margin:.6rem 0; } .story-step p { margin:0; color:var(--muted); } .formula { margin-top:20px; padding:18px; border:1px solid rgba(0,200,255,.45); border-radius:14px; color:#b8edff; background:#0a1014; font:1rem ui-monospace, SFMono-Regular, Menlo, monospace; overflow:auto; } .evidence-map { position:relative; min-height:390px; display:flex; align-items:flex-end; border:1px solid var(--edge); border-radius:18px; overflow:hidden; background:url("assets/rezona-evidence-map.png") center/cover; } .map-copy { width:min(100%,620px); margin:26px; padding:24px; border:1px solid rgba(255,255,255,.16); border-radius:14px; background:rgba(0,0,0,.72); backdrop-filter:blur(10px); } .map-copy p { margin:0; color:#eee; font-size:1.08rem; } footer { border-top:1px solid var(--edge); color:var(--muted); padding:30px 28px; text-align:center; }
+      @media (max-width:760px) { .hero { min-height:620px; padding:54px 26px; background:linear-gradient(90deg,rgba(0,0,0,.48),rgba(0,0,0,.18)),url("assets/rezona-archive-header.png") 66% center/cover; } .hero-copy { padding-top:230px; } .grid, .split, .question-grid, .story, .evidence-ladder { grid-template-columns:1fr; } .evidence-card { min-height:260px; } .story-step { min-height:auto; border-right:0; border-bottom:1px solid var(--edge); } .story-step:last-child { border-bottom:0; } .claim-numbers { gap:10px; } .map-copy { margin:16px; padding:18px; } .evidence-map { min-height:450px; background-position:54% center; } main { padding:54px 22px; } .topnav { padding:12px 22px; } .scenario-table { table-layout:fixed; font-size:.72rem; } .scenario-table th, .scenario-table td { padding:9px 4px; overflow-wrap:anywhere; } .scenario-table th:first-child, .scenario-table td:first-child { width:43%; text-align:left; } }
+      @media (max-width:760px) { .hero { background:linear-gradient(112deg,#050509,#14040a); } }
+      .hero { position:relative; overflow:hidden; } .hero-copy { position:relative; z-index:1; }
+      .hero { background:url("assets/rezona-api-network-hero-v4.png") center/cover; } .hero::before { content:""; position:absolute; inset:0; z-index:0; background:rgba(0,0,0,.30); }
+      @media (max-width:760px) { .hero { background:url("assets/rezona-api-network-hero-v4.png") 64% center/cover; } }
+    </style>
+  </head>
+  <body>
+    <header class="hero">
+      <div class="hero-copy">
+        <h1 class="sr-only">Rezona API Archive by hassanvfx</h1>
+        <p class="hero-kicker">A historical claim, made inspectable</p>
+        <p class="hero-statement"><strong>Rezona says it has 120M+ games. Are they real?</strong> Here is a reproducible method for testing the observable evidence.</p>
+        <div class="claim-panel"><div class="claim-numbers"><span>$120M <small>at $1/game</small></span><span>$1.2B <small>at $10/game</small></span></div><small>Conditional scenario arithmetic—not verified Rezona spend, inventory, model usage, or a legal conclusion.</small></div>
+        <div class="actions">
+          <a class="button primary" href="https://github.com/hassanvfx/rezona-api">View on GitHub</a>
+          <a class="button" href="#method">See the method</a>
+          <a class="button" href="https://github.com/hassanvfx/rezona-api/blob/main/data/rezona/games.enriched.json">Inspect the dataset</a>
+        </div>
+      </div>
+    </header>
+    <nav class="topnav" aria-label="Page sections">
+      <a href="https://github.com/hassanvfx/rezona-api">GitHub repository ↗</a><a href="#story">The story</a><a href="#cost">Cost model</a><a href="#evidence">Evidence</a><a href="#method">Method</a><a href="#api">API reference</a><a href="#reproduce">Reproduce</a><a href="#disclosure">Disclosure</a>
+    </nav>
+    <main>
+      <section id="outcome">
+        <div class="eyebrow">Collection outcome</div>
+        <h2>Built to be checked, not just believed.</h2>
+        <div class="grid">
+          <article class="card"><div class="metric">10,528</div><p>unique game/version records in the expanded enriched corpus.</p></article>
+          <article class="card"><div class="metric">10,000</div><p>ordered mechanic-to-game memberships across the catalog.</p></article>
+          <article class="card"><div class="metric">100</div><p>canonical mechanics with queries and result order retained as provenance.</p></article>
+        </div>
+      </section>
+      <section id="story">
+        <div class="eyebrow">The story</div>
+        <h2>Claim → question → evidence → limit.</h2>
+        <div class="evidence-ladder">
+          <article class="evidence-card claim-card"><div class="evidence-copy"><div class="step-no">01 / THE CLAIM</div><h3>120M+ Rezona games?</h3><p>The historical disclosure attributes this claim to Rezona. This repository does not independently verify it.</p></div></article>
+          <article class="evidence-card cost-card"><div class="evidence-copy"><div class="step-no">02 / THE QUESTION</div><h3>Would that imply $120M at $1/game?</h3><p>Yes, if the claimed games were completed and the scenario cost were $1 each. That is arithmetic, not audited spend.</p></div></article>
+          <article class="evidence-card observed-card"><div class="evidence-copy"><div class="step-no">03 / WHAT WE SAW</div><h3>40,026 observed IDs.</h3><p>Saved API result windows supply a reproducible lower bound—not a total.</p></div></article>
+          <article class="evidence-card limit-card"><div class="evidence-copy"><div class="step-no">04 / THE LIMIT</div><h3>156,988 is exploratory—not a total.</h3><p>Capped, title-derived, dependent searches cannot establish an inventory or data-lake count.</p></div></article>
+        </div>
+      </section>
+      <section id="motivation" class="split">
+        <div>
+          <div class="eyebrow">Motivation</div>
+          <h2>Start with the question. Keep the boundary.</h2>
+          <p class="statement">Could an archive make the scale question falsifiable without pretending to know more than the evidence supports?</p>
+          <p>The result is a mechanics-led corpus, not a global census. It preserves API order, query choices, selected IDs, detail objects, and the exact search position that introduced each record.</p>
+        </div>
+        <div class="card"><div class="eyebrow">The narrow claim</div><p>At collection time, observed search and detail responses yielded 10,528 deduplicated game/version records across a mechanics archive and a fixed-seed keyword-space pilot.</p><p>This is transparent evidence of a collection process—not proof of a platform-wide total, current pricing, or total compute spend.</p></div>
+      </section>
+      <section id="cost" class="split">
+        <div>
+          <div class="eyebrow">Why $1 or $10 can be plausible</div>
+          <h2>Token budgets compound across a game-making workflow.</h2>
+          <p class="lede">Planning, implementation, debugging, and revision can span multiple reasoning requests. A benchmark cost is input tokens × input rate plus visible output and reasoning tokens × output rate.</p>
+          <div class="formula">per-game token cost = input tokens × input rate + output/reasoning tokens × output rate</div>
+          <p>These are dated public reference benchmarks, not evidence that Rezona used OpenAI, either model, or these token budgets. Image/video generation, caching, retries, and platform overhead are also unknown.</p>
+        </div>
+        <div class="card"><div class="eyebrow">2026-08-15 benchmark</div><p><a href="https://developers.openai.com/api/docs/models/gpt-5.6-terra">GPT-5.6 Terra</a>: $2.50/M input · $15/M output.</p><p><a href="https://developers.openai.com/api/docs/models/gpt-5.6-sol">GPT-5.6 Sol</a>: $5/M input · $30/M output.</p><p><strong>Near $1:</strong> Terra 10k input + 65k output/reasoning; Sol 10k + 31.7k.</p><p><strong>Near $10:</strong> Terra 100k input + 650k output/reasoning; Sol 100k + 316.7k, aggregated across requests.</p></div>
+      </section>
+      <section id="evidence">
+        <div class="eyebrow">Observed evidence and overlap</div>
+        <h2>What we observed—and the tempting number we will not call an estimate.</h2>
+        <p class="lede">The archive directly records returned query windows. The 120M statement, costs, and overlap sensitivity are separate layers that must not be collapsed into a platform-wide conclusion.</p>
+        <div class="grid">
+          <article class="card"><div class="metric">40,026</div><p>distinct game IDs observed across combined saved raw-search windows: a lower bound, not a census.</p></article>
+          <article class="card"><div class="metric">318 / 350</div><p>literal terms at the API's 200-result ceiling, so their unseen result tails are unknown.</p></article>
+          <article class="card"><div class="metric">79.82%</div><p>of observed IDs appeared in one term only, showing broad discovery rather than a total estimate.</p></article>
+        </div>
+        <div class="split" style="margin-top:26px"><div class="card"><div class="eyebrow">Two collections, one lower bound</div><div class="metric">40,026</div><p>32,238 mechanics-frame IDs plus a 60-query pilot that contributes 7,788 IDs beyond that original raw union.</p></div><div class="note warning"><strong>156,988: exploratory model output</strong><br><code>40,026 + 31,947² / (2 × 4,363)</code>. It is <strong>not</strong> Rezona’s inventory, actual data lake, platform census, or a confidence interval: 318/350 terms were capped and title-derived queries are dependent.</div></div>
+        <table class="scenario-table"><thead><tr><th>Scenario</th><th>Games</th><th>$1/game</th><th>$10/game</th></tr></thead><tbody><tr><td>Original curated corpus</td><td>8,528</td><td>$8,528</td><td>$85,280</td></tr><tr><td>Expanded enriched corpus</td><td>10,528</td><td>$10,528</td><td>$105,280</td></tr><tr><td>Combined observed lower bound</td><td>40,026</td><td>$40,026</td><td>$400,260</td></tr><tr><td>Exploratory overlap model</td><td>156,988</td><td>$156,988</td><td>$1.57M</td></tr><tr><td>Historical 120M comparison (unverified)</td><td>120,000,000</td><td>$120M</td><td>$1.2B</td></tr></tbody></table>
+        <p>The $1/$10 values are scenario inputs per completed indexed game, not audited platform pricing or spend. They exclude failures, retries, hosting, moderation, storage, and other costs. <a href="research/search-coverage-cost-scenarios.md">Read the full claim, token-cost, and overlap methodology →</a> · <a href="data/search-coverage-analysis.json">View the analysis JSON →</a></p>
+        <div class="question-grid">
+          <div class="question"><strong>Does the collection prove 120M games?</strong><span>No. It is a mechanics-led sample, not a complete platform census.</span></div>
+          <div class="question"><strong>Does query search establish a global count?</strong><span>No. It is query-dependent, paginated, and capped rather than a global inventory endpoint.</span></div>
+          <div class="question"><strong>Does the archive disprove a historical claim?</strong><span>No. It makes no platform-wide total or pricing conclusion.</span></div>
+          <div class="question"><strong>Does it verify a $15 unit cost?</strong><span>No. That is a historical author assumption, not an audited price or spend figure.</span></div>
+        </div>
+        <div class="note" style="margin-top:22px">Low overlap supports further documented discovery, but it does not justify a numeric platform-total extrapolation while query terms are curated and most result windows are capped.</div>
+      </section>
+      <section id="map">
+        <div class="eyebrow">From a search hit to a record</div>
+        <h2>The archive is a map, not a magic number.</h2>
+        <div class="evidence-map" role="img" aria-label="Abstract visualization of game search results linking through a provenance map into a structured data archive">
+          <div class="map-copy"><p>A game enters the dataset only with a visible route: mechanic → query → page → result position → selected rank → detail response. That route is what makes the collection useful to audit.</p></div>
+        </div>
+      </section>
+      <section id="method">
+        <div class="eyebrow">Method</div>
+        <h2>Every selection can be traced back to its search hit.</h2>
+        <p class="lede">The workflow preserves configured query order and API item order, then records the selected mechanic, query, page, position, and rank beside each API detail object.</p>
+        <div class="diagram"><pre class="mermaid">flowchart LR
+  A[100 ordered mechanics] --> B[Saved search pages]
+  B --> C[First 100 unique games per mechanic]
+  C --> D[Deduplicated detail archive]
+  D --> E[Enriched dataset]
+  B --> F[index and provenance]
+  F --> E</pre></div>
+        <div class="diagram"><pre class="mermaid">sequenceDiagram
+  participant C as Collector
+  participant A as API
+  participant S as Local checkpoints
+  participant V as Validator
+  C->>A: Search pages, two concurrent jobs
+  A-->>C: JSON responses
+  C->>S: Save raw responses unchanged
+  C->>A: Selected game details
+  C->>V: Validate and aggregate
+  V-->>C: Enriched dataset + manifest</pre></div>
+      </section>
+      <section id="api" class="split">
+        <div>
+          <div class="eyebrow">API reconstruction</div>
+          <h2>Broader observed API surface, carefully scoped.</h2>
+          <p>The repository records confirmed live behavior, strong inferences, and open questions separately. The corpus depends only on search and game-detail responses; stateful routes are documented for research completeness and remain out of scope for collection.</p>
+          <p><a href="https://github.com/hassanvfx/rezona-api/blob/main/api-reconstruction.md">Read the full reconstruction record →</a></p>
+        </div>
+        <div class="api-list">
+          <div><code>topic/*</code> — discovery and topic-scoped game lists</div>
+          <div><code>search?type=…&amp;q=…</code> — paged multi-type search</div>
+          <div><code>game/detail</code> and <code>game/creation-templates</code> — game metadata and presets</div>
+          <div><code>asset/page</code>, <code>comment/*</code>, <code>notification/*</code> — documented supporting surfaces</div>
+        </div>
+      </section>
+      <section id="reproduce" class="split">
+        <div>
+          <div class="eyebrow">Reproduce</div>
+          <h2>Local-only token handling.</h2>
+          <p>Optional authentication is for your own authorized Rezona account. The collector falls back to anonymous calls wherever an endpoint permits it and never prints a configured token.</p>
+          <ol class="steps"><li>Sign in at <a href="https://create.rezona.ai/login">create.rezona.ai/login</a> and continue to your workspace.</li><li>In browser developer tools, find a successful signed-in request to <code>api.rezona.ai/api/v3</code>.</li><li>Copy only the bearer token value from its Authorization request header into the ignored local env file.</li></ol>
+        </div>
+        <div class="card"><div class="eyebrow">Never commit this file</div><code class="codeblock">REZONA_ACCESS_TOKEN=replace-with-your-own-token</code><p>Never copy cookies, browser exports, headers, or token values into the repository, screenshots, journals, or generated JSON.</p><p><a href="https://github.com/hassanvfx/rezona-api#obtain-or-renew-a-local-token">Read the complete renewal steps →</a></p></div>
+      </section>
+      <section id="disclosure">
+        <div class="eyebrow">Disclosure record</div>
+        <h2>Historical context, carefully attributed.</h2>
+        <div class="note">The linked disclosure is an author-provided historical record of a disclosure made to Rezona. It documents context; it is not independent verification of every historical statement or a legal conclusion about source-data rights.</div>
+        <p><a href="disclosure/rezona-api-accessibility-disclosure.pdf">Read the disclosure PDF</a> · <a href="data/NOTICE.md">Source-data notice and correction process</a></p>
+        <img class="notice" src="assets/disclosure/research-notice.png" alt="Research notice graphic reproduced from the author-provided disclosure">
+      </section>
+      <section>
+        <div class="eyebrow">Responsible reuse</div>
+        <h2>Open tooling, explicit boundaries.</h2>
+        <p class="lede">The MIT license applies to this project’s original code, writing, diagrams, and generated artwork. It does not grant rights in source game data, creator material, trademarks, or other third-party content. No credentials, cookies, authorization headers, or browser-session data are included.</p>
+      </section>
+    </main>
+    <footer>Rezona API Archive · <a href="https://github.com/hassanvfx/rezona-api">GitHub</a> · <a href="https://github.com/hassanvfx/rezona-api/blob/main/LICENSE">MIT License</a></footer>
+    <script type="module">
+      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+      mermaid.initialize({ startOnLoad: true, theme: 'dark', securityLevel: 'strict' });
+    </script>
+  </body>
+</html>

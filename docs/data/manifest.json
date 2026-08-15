@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-08-15T00:00:00Z",
+  "artifacts": [
+    {
+      "path": "data/rezona/games.enriched.json",
+      "sha256": "1f57b4116658341ffd0c6be194e202877e8cc0ec2709adc92f8f5bfa439c5a6a",
+      "bytes": 23223238,
+      "description": "Deduplicated game-detail dataset with mechanics and keyword-space provenance."
+    }
+  ]
+}

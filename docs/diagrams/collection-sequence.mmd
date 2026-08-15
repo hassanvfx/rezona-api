@@ -1,0 +1,16 @@
+sequenceDiagram
+    participant C as Collector
+    participant L as Local token file
+    participant A as Rezona API
+    participant S as Raw search archive
+    participant D as Detail archive
+    participant V as Validator / aggregator
+    C->>L: Load optional local token
+    C->>A: Request search pages (two concurrent jobs)
+    A-->>C: JSON response
+    C->>S: Checkpoint raw page unchanged
+    C->>A: Fetch selected game details
+    A-->>C: JSON response
+    C->>D: Checkpoint raw detail unchanged
+    C->>V: Validate order, coverage, identities
+    V-->>C: Enriched dataset + manifest

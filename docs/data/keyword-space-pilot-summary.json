@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "study_id": "rezona-keyword-space-pilot-v1",
+  "status": "completed",
+  "method": "Deterministic adaptive discovery sample: 30 long-tail title unigrams and 30 long-tail title bigrams drawn from the existing enriched game-title corpus. This is not a probability sample of all Rezona games.",
+  "query_count": 60,
+  "search_pages": 120,
+  "search_items_returned": 11341,
+  "capped_search_pages": 108,
+  "new_unique_game_ids_observed": 9102,
+  "detail_capture_limit": 2000,
+  "detail_responses_archived": 2000,
+  "detail_responses_valid": 2000,
+  "raw_provenance": "Local and Git-ignored under data/rezona/keyword-space/."
+}

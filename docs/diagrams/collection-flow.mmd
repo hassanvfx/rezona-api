@@ -1,0 +1,8 @@
+flowchart LR
+    A[mechanics.json\n100 ordered mechanics] --> B[6 saved search pages\nper mechanic]
+    B --> C[API/query order preserved]
+    C --> D[First 100 unique games\nper mechanic]
+    D --> E[Deduplicated detail archive]
+    E --> F[games.enriched.json]
+    B --> G[index.json\nselection & paths]
+    G --> F
